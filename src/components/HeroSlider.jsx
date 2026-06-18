@@ -40,7 +40,7 @@ const HeroSlider = () => {
 
   return (
     // Removed the top padding (pt-4) so it sits flush under the navbar
-    <section className="max-w-[1326px] w-full mx-auto pt-0 pb-0 text-left" id="home">   
+    <section className="max-w-[1326px] mx-auto w-full mx-auto pt-0 pb-0 text-left" id="home">   
       
       {/* Removed 'rounded-3xl' so the corners are perfectly sharp */}
       <div className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden group bg-zinc-900">

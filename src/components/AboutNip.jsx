@@ -80,7 +80,7 @@ const AboutSection = () => {
 
       {/* --- CONTENT CONTAINER --- */}
       <div className="relative z-10 max-w-[1326px] mx-auto px-4 md:px-8">
-        <div className="max-w-[1000px] mx-auto">
+        <div className="max-w-[1000px]  mx-auto">
           
           {/* 2. Title: Centered, smaller font-weight (semibold instead of bold), and reduced bottom margin */}
           <h2 className="about-header text-2xl md:text-3xl lg:text-4xl font-semibold text-center text-zinc-900 mb-8 md:mb-10">

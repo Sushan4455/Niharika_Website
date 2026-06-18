@@ -132,7 +132,7 @@ const ServicesSection = () => {
       // Adjusted top padding to fix spacing issues
       className="w-full bg-white pt-0 pb-12 md:pt-0 md:pb-24 overflow-hidden"
     >
-      <div className="max-w-[1326px]  px-0 md:px-0">
+      <div className="max-w-[1326px] mx-auto px-0 md:px-0">
         
         {/* Centered & Scaled Down Header */}
         <div ref={headerRef} className="mb-10 md:mb-12 mt-3 flex flex-col items-center text-center">
