@@ -135,7 +135,7 @@ const ServicesSection = () => {
       <div className="max-w-[1326px]  px-0 md:px-0">
         
         {/* Centered & Scaled Down Header */}
-        <div ref={headerRef} className="mb-10 md:mb-12 flex flex-col items-center text-center">
+        <div ref={headerRef} className="mb-10 md:mb-12 mt-3 flex flex-col items-center text-center">
           <h3 className="text-3xl md:text-4xl font-medium text-zinc-900 tracking-tight mb-4">
             We Design & Develop
           </h3>
