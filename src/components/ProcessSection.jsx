@@ -7,7 +7,6 @@ gsap.registerPlugin(ScrollTrigger);
 const ProcessSection = () => {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
-  // Removed cardsRef array entirely to prevent React Strict Mode bugs!
 
   const processData = [
     {
@@ -33,30 +32,38 @@ const ProcessSection = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       
-      gsap.from(headerRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 85%",
+      // Using fromTo explicitly forces the opacity to reach 1 (visible)
+      gsap.fromTo(headerRef.current, 
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6, // Sped up
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+          }
         }
-      });
+      );
 
-      // Target the new '.process-card' class instead of the ref array
-      gsap.from(".process-card", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".process-grid",
-          start: "top 85%",
-          toggleActions: "play none none reverse"
+      // Using fromTo here prevents cards from getting stuck invisibly
+      gsap.fromTo(".process-card", 
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.4, // Much faster animation
+          stagger: 0.1,  // Much faster stagger between cards
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".process-grid",
+            start: "top 85%",
+            // Changed to 'play none none none' so once they appear, they safely stay on screen!
+            toggleActions: "play none none none" 
+          }
         }
-      });
+      );
 
     }, sectionRef);
 
@@ -67,7 +74,6 @@ const ProcessSection = () => {
     <section 
       id="approach" 
       ref={sectionRef} 
-      // Cleaned up duplicate background classes
       className="w-full bg-white py-16 md:py-24 border-t border-zinc-200 overflow-hidden" 
     >
       <div className="max-w-[1326px] mx-auto px-4 md:px-8">
@@ -91,7 +97,6 @@ const ProcessSection = () => {
           {processData.map((item) => (
             <div 
               key={item.id}
-              // Added "process-card" class here for GSAP to target safely!
               className="process-card bg-white p-6 md:p-8 flex flex-col items-start text-left border border-zinc-200 hover:border-zinc-300 hover:shadow-sm transition-all duration-300"
             >
               

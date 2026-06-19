@@ -116,7 +116,7 @@ const ServicesSection = () => {
         
         <a 
           href={service.link} 
-          className="inline-flex items-center justify-start gap-2 text-[#dc143c] text-xs font-semibold uppercase tracking-wider hover:text-white transition-colors duration-300"
+          className="inline-flex items-center justify-start gap-2 text-[#ffffff] text-xs font-semibold uppercase tracking-wider hover:text-white transition-colors duration-300"
         >
           Explore <ArrowRight size={14} className="ml-1" />
         </a>

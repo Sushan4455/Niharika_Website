@@ -36,17 +36,19 @@
 }
 
 #root {
-  width: 1326px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-left: 1px solid #e5e7eb;
-  border-right: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: 1326px; 
+  margin: 0 auto;    
+  border-left: 1px solid #e5e7eb;  
+  border-right: 1px solid #e5e7eb; 
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  background-color: #ffffff; 
+  overflow-x: clip; 
 }
+
 
 /* Infinite Marquee Animation for Logo Slider */
 @keyframes marquee {

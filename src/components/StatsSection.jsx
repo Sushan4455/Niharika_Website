@@ -63,10 +63,10 @@ const StatsSection = () => {
   }, []);
 
   return (
-    <section 
+      <section 
       ref={sectionRef} 
-      className="max-w-[1326px] mx-auto w-full mx-auto px-4 md:px-8 py-8 md:py-12 bg-white overflow-hidden border-b-2 border-zinc-100"
-    >
+      className="w-full px-4 md:px-8 py-8 md:py-12 bg-white overflow-hidden border-b-2 border-zinc-100"
+    > 
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 md:gap-4">
         
         {/* Added 'text-left' to override the global centering from your CSS root */}

@@ -63,7 +63,8 @@ const Navbar = () => {
           isScrolled ? 'shadow-sm py-3' : 'py-4 md:py-5'
         }`}
       >
-        <div className="max-w-[1326px] mx-auto w-full mx-auto px-4 md:px-8 flex items-center justify-between">
+        {/* 💥 THE FLUID FIX: Changed to w-[92%] max-w-[1600px] mx-auto */}
+        <div className="w-[92%] max-w-[1600px] mx-auto flex items-center justify-between">
           
           <a 
             href="#home" 
