@@ -9,6 +9,7 @@ import MissionVision from './components/MissionVision';
 import ServicesSection from './components/ServicesSection';
 import ProcessSection from './components/ProcessSection';
 import CTASection from './components/ CTASection';
+import YearReview from './components/YearReviewSection';
 
 const App = () => {
   
@@ -46,6 +47,7 @@ const App = () => {
          <MissionVision />
          <ServicesSection />
          <ProcessSection />
+         <YearReview />
          <CTASection />
       </main>
     </div>

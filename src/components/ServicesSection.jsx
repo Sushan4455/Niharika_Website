@@ -10,7 +10,6 @@ const ServicesSection = () => {
   const headerRef = useRef(null);
   const accordionRef = useRef(null);
 
-  // Track the active (expanded) item for each row. 
   const [activeRow1, setActiveRow1] = useState(1);
   const [activeRow2, setActiveRow2] = useState(5);
 
@@ -25,7 +24,6 @@ const ServicesSection = () => {
     { id: 8, heading: 'Radio & TV', description: 'Engaging broadcast programs tailored to reach wide audiences effectively.', image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=2070&auto=format&fit=crop', link: '/services/radio-tv' },
   ];
 
-  // Split the data into two rows
   const row1Data = servicesData.slice(0, 4);
   const row2Data = servicesData.slice(4, 8);
 
@@ -57,13 +55,20 @@ const ServicesSection = () => {
     return () => ctx.revert();
   }, []);
 
-  // Reusable component for an individual accordion slice
   const AccordionItem = ({ service, isActive, onHover }) => (
     <div
       onMouseEnter={onHover}
-      className={`relative h-[350px] md:h-[400px] lg:h-[450px] overflow-hidden cursor-pointer transition-[flex] duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] will-change-[flex] origin-left border-r border-zinc-900 last:border-r-0 min-w-0 ${
-        isActive ? 'flex-[3.5]' : 'flex-1'
-      }`}
+      className={`relative overflow-hidden cursor-pointer origin-left min-w-0 border-b md:border-b-0 md:border-r border-zinc-900 last:border-none
+      
+      /* --- THE SMOOTHNESS FIX --- */
+      transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] transform-gpu will-change-[width,height]
+      
+      /* Explicit sizes: Vertical stacking for mobile, Horizontal stretching for desktop */
+      ${isActive 
+        ? 'w-full h-[350px] md:h-[400px] lg:h-[450px] md:w-[55%]' 
+        : 'w-full h-[100px] md:h-[400px] lg:h-[450px] md:w-[15%]'
+      }
+      `}
     >
       {/* Background Image */}
       <img 
@@ -88,9 +93,9 @@ const ServicesSection = () => {
         </span>
       </div>
 
-      {/* Vertical Title (Shows when collapsed) */}
+      {/* Vertical Title (Shows when collapsed on Desktop, hidden on Mobile) */}
       <div 
-        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 origin-center whitespace-nowrap transition-all duration-500 z-10 pointer-events-none ${
+        className={`hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 origin-center whitespace-nowrap transition-all duration-500 z-10 pointer-events-none ${
           isActive ? 'opacity-0 scale-90' : 'opacity-100 scale-100 delay-200'
         }`}
       >
@@ -99,9 +104,19 @@ const ServicesSection = () => {
         </h4>
       </div>
 
+      {/* Horizontal Title (Shows when collapsed on Mobile, hidden on Desktop) */}
+      <div 
+        className={`md:hidden absolute top-1/2 left-6 -translate-y-1/2 whitespace-nowrap transition-all duration-500 z-10 pointer-events-none ${
+          isActive ? 'opacity-0 scale-90' : 'opacity-100 scale-100 delay-200'
+        }`}
+      >
+        <h4 className="text-white text-lg tracking-wider font-medium">
+          {service.heading}
+        </h4>
+      </div>
+
       {/* Expanded Content (Shows when active) */}
       <div 
-        /* ADDED: flex flex-col items-start text-left to force strict left alignment */
         className={`absolute bottom-6 left-6 md:bottom-10 md:left-10 pr-6 z-20 w-full max-w-md flex flex-col items-start text-left transition-all duration-700 transform ${
           isActive ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 translate-y-8 pointer-events-none'
         }`}
@@ -129,22 +144,18 @@ const ServicesSection = () => {
     <section 
       id="services" 
       ref={sectionRef} 
-      // Adjusted top padding to fix spacing issues
       className="w-full bg-white pt-0 pb-12 md:pt-0 md:pb-24 overflow-hidden"
     >
       <div className="max-w-[1326px] mx-auto px-0 md:px-0">
         
-        {/* Centered & Scaled Down Header */}
         <div ref={headerRef} className="mb-10 md:mb-12 mt-3 flex flex-col items-center text-center">
           <h3 className="text-3xl md:text-4xl font-medium text-zinc-900 tracking-tight mb-4">
             We Design & Develop
           </h3>
         </div>
 
-        {/* --- Expanding Accordion Container --- */}
         <div ref={accordionRef} className="flex flex-col w-full bg-zinc-950 border border-zinc-900">
           
-          {/* Row 1 */}
           <div className="flex flex-col md:flex-row w-full border-b border-zinc-900">
             {row1Data.map((service) => (
               <AccordionItem 
@@ -156,7 +167,6 @@ const ServicesSection = () => {
             ))}
           </div>
 
-          {/* Row 2 */}
           <div className="flex flex-col md:flex-row w-full">
             {row2Data.map((service) => (
               <AccordionItem 
